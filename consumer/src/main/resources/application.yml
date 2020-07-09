@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: consumer
+server:
+  port: 9001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/ #ÕâÀïÓÐ¿Ó£¬default-zone->defaultZone
+feign:
+  hystrix:
+    enabled: true
