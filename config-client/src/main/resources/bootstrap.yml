@@ -1,10 +1,20 @@
 spring:
-  profiles:
-    active: dev
+#  profiles:
+#    active: dev
+  application:
+    name: config-client
   cloud:
     bus:
       trace:
         enabled: true
+    config:
+      #      uri: http://localhost:10001/
+      name: config
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        service-id: config-server #server端spring.application.name的值
   rabbitmq:
     host: localhost
     port: 5672
@@ -16,35 +26,8 @@ eureka:
     service-url:
       defaultZone: http://localhost:7001/eureka/
 
-
-## 刷新时，关闭安全验证
-#  management.security.enabled=false
-
----
-spring:
-  profiles: prod
-  application:
-    name: config-client
-  cloud:
-    config:
-#      uri: http://localhost:10001/
-      name: config
-      profile: dev
-      label: master
-      discovery:
-        enabled: true
-        service-id: config-server #server端spring.application.name的值
----
-spring:
-  profiles: dev
-  application:
-    name: config-client
-  cloud:
-    config:
-#      uri: http://localhost:10001/
-      name: config
-      profile: dev
-      label: master
-      discovery:
-        enabled: true
-        service-id: config-server
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

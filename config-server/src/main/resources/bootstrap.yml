@@ -5,6 +5,9 @@ spring:
   #    active:
   #    - native
   cloud:
+    bus:
+      trace:
+        enabled: true
     config:
       server:
         git:
