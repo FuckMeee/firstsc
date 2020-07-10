@@ -1,9 +1,9 @@
 spring:
   application:
-    name: provider #服务注册到Eureka上使用的名称
+    name: provider #鏈嶅姟娉ㄥ唽鍒癊ureka涓婁娇鐢ㄧ殑鍚嶇О
 server:
   port: 8002
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/ #这里有坑，default-zone->defaultZone
+      defaultZone: http://eureka7001.com:7001/eureka/ #杩欓噷鏈夊潙锛宒efault-zone->defaultZone

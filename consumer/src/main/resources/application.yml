@@ -6,7 +6,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/ #ÕâÀïÓÐ¿Ó£¬default-zone->defaultZone
+      defaultZone: http://eureka7001.com:7001/eureka/ #è¿™é‡Œæœ‰å‘ï¼Œdefault-zone->defaultZone
 feign:
   hystrix:
     enabled: true

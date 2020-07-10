@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/hello")
-public class HelloController2 {
+public class HelloController {
     @Autowired
     private HelloService helloService;
     @GetMapping("/index")
