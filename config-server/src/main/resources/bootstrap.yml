@@ -5,9 +5,6 @@ spring:
   #    active:
   #    - native
   cloud:
-#    bus:
-#      trace:
-#        enabled: true
     config:
       server:
         git:
@@ -31,4 +28,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: bus-refresh
+        include: bus-refresh # http://localhost:10001/actuator/bus-refresh 用来通知 config-server 刷新
