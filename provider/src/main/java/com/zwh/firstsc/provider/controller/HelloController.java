@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @GetMapping("/index")
     public String index(@RequestParam("str") String str) {
-        return "hello2 " + str;
+        return "hello " + str;
+    }
+
+    @GetMapping("/index2")
+    public String index() {
+        return "hello zwh";
     }
 }

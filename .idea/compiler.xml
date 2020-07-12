@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="gateway" />
         <module name="firstsc" />
         <module name="config-server" />
         <module name="provider" />
@@ -22,6 +23,7 @@
       <module name="consumer" options="-parameters" />
       <module name="eureka-discovery" options="-parameters" />
       <module name="firstsc" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="provider" options="-parameters" />
     </option>
   </component>

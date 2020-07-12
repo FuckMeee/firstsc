@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: gateway
+server:
+  port: 12001
+zuul:
+  routes:
+    hello:
+      path: /hello/**
+      url: http://localhost:8002/hello
