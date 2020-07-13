@@ -13,6 +13,7 @@
         <module name="eureka-discovery" />
         <module name="config-client" />
         <module name="consumer" />
+        <module name="zuul" />
       </profile>
     </annotationProcessing>
   </component>
@@ -25,6 +26,7 @@
       <module name="firstsc" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="provider" options="-parameters" />
+      <module name="zuul" options="-parameters" />
     </option>
   </component>
 </project>

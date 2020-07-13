@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: zuul
+server:
+  port: 12001
+zuul:
+  routes:
+    hello:
+      id: /hello/**
+#      url: http://localhost:8002/hello
+      serviceId: provider
+      stripPrefix: false # true不带前缀 false带前缀
+  retryable: true #是否开启重试功能
+ribbon:
+  MaxAutoRetries: 2 #对当前服务的重试次数
+  MaxAutoRetriesNextServer: 0 #切换相同Server的次数
+  ConnectTimeout: 3000 #请求连接的超时时间，限制3秒内必须请求到服务，并不限制服务处理的返回时间
+  ReadTimeout: 3000 #请求处理的超时时间 下级服务响应最大时间,超出时间消费方（路由也是消费方）返回timeout
+
+#  #重试机制 zuul集成了ribbon，会自动负载均衡的方式去调用内部服务
+#  #该参数用来开启重试机制，默认是关闭
+#  spring.cloud.loadbalancer.retry.enabled=true
+#  #对所有操作请求都进行重试
+#  ribbon.OkToRetryOnAllOperations=true
+#  #对当前实例的重试次数
+#  ribbon.MaxAutoRetries=1
+#  #切换实例的重试次数
+#  ribbon.MaxAutoRetriesNextServer=1
+#  #根据如上配置，当访问到故障请求的时候，它会再尝试访问一次当前实例（次数由MaxAutoRetries配置），
+#  #如果不行，就换一个实例进行访问，如果还是不行，再换一次实例访问（更换次数由MaxAutoRetriesNextServer配置），
+#  #如果依然不行，返回失败信息。
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
