@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: auth #服务注册到Eureka上使用的名称
+server:
+  port: 14001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/ #这里有坑，default-zone->defaultZone

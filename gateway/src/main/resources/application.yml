@@ -5,9 +5,17 @@ spring:
     gateway:
       routes:
         - id: hello
-          uri: http://localhost:8001/hello/index3
+          uri: lb://provider
           predicates:
-            - Path=/hello/index3
+            - Path=/hello/**
+        - id: auth
+          uri: lb://auth
+          predicates:
+            - Path=/auth/**
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
 server:
   port: 13001
 
@@ -19,3 +27,11 @@ eureka:
 logging:
   level:
     org.springframework.cloud.gateway: debug
+
+jwt:
+  test: hello/login, hello/login2, /auth/token
+  token:
+    expireTime: 1800 # √Î
+  ignoreUrlList:
+    - "hello/login"
+    - "hello/login2"

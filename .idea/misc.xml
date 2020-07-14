@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/gateway2/pom.xml" />
         <option value="$PROJECT_DIR$/zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/auth/pom.xml" />
       </list>
     </option>
   </component>
