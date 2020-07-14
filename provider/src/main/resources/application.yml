@@ -2,7 +2,7 @@ spring:
   application:
     name: provider #服务注册到Eureka上使用的名称
 server:
-  port: 8002
+  port: 8001
 eureka:
   client:
     service-url:

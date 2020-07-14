@@ -7,6 +7,17 @@
     <groupId>com.zwh.firstsc</groupId>
     <artifactId>firstsc</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>config-client</module>
+        <module>config-server</module>
+        <module>consumer</module>
+        <module>eureka-discovery</module>
+        <module>gateway</module>
+        <module>provider</module>
+        <module>zuul</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

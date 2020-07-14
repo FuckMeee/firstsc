@@ -5,9 +5,9 @@ spring:
     gateway:
       routes:
         - id: hello
-          uri: http://localhost:8002/hello
+          uri: http://localhost:8001/hello/index3
           predicates:
-            - Path=/hello
+            - Path=/hello/index3
 server:
   port: 13001
 
