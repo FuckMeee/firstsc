@@ -20,8 +20,9 @@ public class HelloController {
     @GetMapping("/index2")
     public String index2() {
         logger.info("request name is index2");
+//        throw new RuntimeException("error");
         try{
-            Thread.sleep(1000000);
+            Thread.sleep(10000);
         }catch ( Exception e){
             logger.error(" hello two error",e);
         }

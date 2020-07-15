@@ -57,6 +57,9 @@ public class TokenFilter implements GlobalFilter, Ordered {
                 //校验token
                 String userId = verifyJWT(token);
                 if (StringUtils.isEmpty(userId)) {
+
+
+
                     return response(exchange, "1001", "请重新授权2");
                 }
                 //将现在的request，添加当前身份
