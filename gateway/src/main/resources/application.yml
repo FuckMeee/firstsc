@@ -12,16 +12,16 @@ spring:
           predicates:
             - Path=/hello/**
           filters:
-            - name: Retry # ÖØÊÔ
+            - name: Retry # é‡è¯•
               args:
-                retries: 3 # retries£ºÖØÊÔ´ÎÊı£¬Ä¬ÈÏÖµÊÇ 3 ´Î
-                statuses: INTERNAL_SERVER_ERROR # HTTP µÄ×´Ì¬·µ»ØÂë£¬È¡ÖµÇë²Î¿¼£ºorg.springframework.http.HttpStatus
-                methods: GET,POST # Ö¸¶¨ÄÄĞ©·½·¨µÄÇëÇóĞèÒª½øĞĞÖØÊÔÂß¼­£¬Ä¬ÈÏÖµÊÇ GET ·½·¨£¬È¡Öµ²Î¿¼£ºorg.springframework.http.HttpMethod
-                series: SERVER_ERROR # Ò»Ğ©ÁĞµÄ×´Ì¬ÂëÅäÖÃ£¬È¡Öµ²Î¿¼£ºorg.springframework.http.HttpStatus.Series¡£·ûºÏµÄÄ³¶Î×´Ì¬Âë²Å»á½øĞĞÖØÊÔÂß¼­£¬Ä¬ÈÏÖµÊÇ SERVER_ERROR£¬ÖµÊÇ 5£¬Ò²¾ÍÊÇ 5XX(5 ¿ªÍ·µÄ×´Ì¬Âë)£¬¹²ÓĞ5 ¸öÖµ
-            - name: Hystrix # ÈÛ¶Ï
+                retries: 3 # retriesï¼šé‡è¯•æ¬¡æ•°ï¼Œé»˜è®¤å€¼æ˜¯ 3 æ¬¡
+                statuses: INTERNAL_SERVER_ERROR # HTTP çš„çŠ¶æ€è¿”å›ç ï¼Œå–å€¼è¯·å‚è€ƒï¼šorg.springframework.http.HttpStatus
+                methods: GET,POST # æŒ‡å®šå“ªäº›æ–¹æ³•çš„è¯·æ±‚éœ€è¦è¿›è¡Œé‡è¯•é€»è¾‘ï¼Œé»˜è®¤å€¼æ˜¯ GET æ–¹æ³•ï¼Œå–å€¼å‚è€ƒï¼šorg.springframework.http.HttpMethod
+                series: SERVER_ERROR # ä¸€äº›åˆ—çš„çŠ¶æ€ç é…ç½®ï¼Œå–å€¼å‚è€ƒï¼šorg.springframework.http.HttpStatus.Seriesã€‚ç¬¦åˆçš„æŸæ®µçŠ¶æ€ç æ‰ä¼šè¿›è¡Œé‡è¯•é€»è¾‘ï¼Œé»˜è®¤å€¼æ˜¯ SERVER_ERRORï¼Œå€¼æ˜¯ 5ï¼Œä¹Ÿå°±æ˜¯ 5XX(5 å¼€å¤´çš„çŠ¶æ€ç )ï¼Œå…±æœ‰5 ä¸ªå€¼
+            - name: Hystrix # ç†”æ–­
               args:
                 name: fallbackcmd
-                fallbackUri: forward:/defaultFallback # ·şÎñ½µ¼¶µØÖ·
+                fallbackUri: forward:/defaultFallback # æœåŠ¡é™çº§åœ°å€
         - id: auth
           uri: lb://auth
           predicates:
@@ -29,10 +29,10 @@ spring:
           filters:
             - name: Retry
               args:
-                retries: 3 # retries£ºÖØÊÔ´ÎÊı£¬Ä¬ÈÏÖµÊÇ 3 ´Î
-                statuses: BAD_GATEWAY # HTTP µÄ×´Ì¬·µ»ØÂë£¬È¡ÖµÇë²Î¿¼£ºorg.springframework.http.HttpStatus
-                methods: GET,POST # Ö¸¶¨ÄÄĞ©·½·¨µÄÇëÇóĞèÒª½øĞĞÖØÊÔÂß¼­£¬Ä¬ÈÏÖµÊÇ GET ·½·¨£¬È¡Öµ²Î¿¼£ºorg.springframework.http.HttpMethod
-#                series: SERVER_ERROR # Ò»Ğ©ÁĞµÄ×´Ì¬ÂëÅäÖÃ£¬È¡Öµ²Î¿¼£ºorg.springframework.http.HttpStatus.Series¡£·ûºÏµÄÄ³¶Î×´Ì¬Âë²Å»á½øĞĞÖØÊÔÂß¼­£¬Ä¬ÈÏÖµÊÇ SERVER_ERROR£¬ÖµÊÇ 5£¬Ò²¾ÍÊÇ 5XX(5 ¿ªÍ·µÄ×´Ì¬Âë)£¬¹²ÓĞ5 ¸öÖµ
+                retries: 3 # retriesï¼šé‡è¯•æ¬¡æ•°ï¼Œé»˜è®¤å€¼æ˜¯ 3 æ¬¡
+                statuses: BAD_GATEWAY # HTTP çš„çŠ¶æ€è¿”å›ç ï¼Œå–å€¼è¯·å‚è€ƒï¼šorg.springframework.http.HttpStatus
+                methods: GET,POST # æŒ‡å®šå“ªäº›æ–¹æ³•çš„è¯·æ±‚éœ€è¦è¿›è¡Œé‡è¯•é€»è¾‘ï¼Œé»˜è®¤å€¼æ˜¯ GET æ–¹æ³•ï¼Œå–å€¼å‚è€ƒï¼šorg.springframework.http.HttpMethod
+#                series: SERVER_ERROR # ä¸€äº›åˆ—çš„çŠ¶æ€ç é…ç½®ï¼Œå–å€¼å‚è€ƒï¼šorg.springframework.http.HttpStatus.Seriesã€‚ç¬¦åˆçš„æŸæ®µçŠ¶æ€ç æ‰ä¼šè¿›è¡Œé‡è¯•é€»è¾‘ï¼Œé»˜è®¤å€¼æ˜¯ SERVER_ERRORï¼Œå€¼æ˜¯ 5ï¼Œä¹Ÿå°±æ˜¯ 5XX(5 å¼€å¤´çš„çŠ¶æ€ç )ï¼Œå…±æœ‰5 ä¸ªå€¼
 #      discovery:
 #        locator:
 #          enabled: true
@@ -52,7 +52,7 @@ logging:
 jwt:
   test: hello/login, hello/login2, /auth/token
   token:
-    expireTime: 1800 # Ãë
+    expireTime: 1800 # ç§’
   ignoreUrlList:
     - "hello/login"
     - "hello/login2"
