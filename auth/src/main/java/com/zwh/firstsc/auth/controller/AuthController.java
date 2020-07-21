@@ -21,7 +21,7 @@ public class AuthController {
         if (StringUtils.isBlank(age)) {
             return "age empty";
         }
-        System.out.println("=================================");
+        System.out.println("==================================");
         Map<String, String> map = new HashMap<>();
         map.put("name", name);
         map.put("age", age);
