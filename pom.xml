@@ -13,6 +13,8 @@
         <module>auth</module>
         <module>config-client</module>
         <module>config-server</module>
+        <module>consul-consumer</module>
+        <module>consul-provider</module>
         <module>consumer</module>
         <module>eureka-discovery</module>
         <module>gateway</module>

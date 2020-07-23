@@ -2,7 +2,7 @@ spring:
   application:
     name: consumer
 server:
-  port: 9001
+  port: 15001
 eureka:
   client:
     service-url:
@@ -10,3 +10,13 @@ eureka:
 feign:
   hystrix:
     enabled: true
+    #替换掉JDK默认HttpURLConnection实现的 Http Client
+  httpclient:
+    enabled: true
+  client:
+    config:
+      default:
+        #连接超时时间
+        connectTimeout: 5000
+        #读取超时时间
+        readTimeout: 5000
