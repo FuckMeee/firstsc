@@ -19,6 +19,9 @@
         <option value="$PROJECT_DIR$/auth/pom.xml" />
         <option value="$PROJECT_DIR$/consul/pom.xml" />
         <option value="$PROJECT_DIR$/consul-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-config/pom.xml" />
       </list>
     </option>
   </component>

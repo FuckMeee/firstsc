@@ -7,15 +7,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="consul-provider" />
-        <module name="gateway" />
+        <module name="zuul" />
         <module name="config-server" />
         <module name="provider" />
+        <module name="nacos-provider" />
         <module name="auth" />
         <module name="eureka-discovery" />
         <module name="consul-consumer" />
+        <module name="nacos-config" />
+        <module name="gateway" />
         <module name="config-client" />
         <module name="consumer" />
-        <module name="zuul" />
+        <module name="nacos-consumer" />
       </profile>
     </annotationProcessing>
   </component>
@@ -30,6 +33,9 @@
       <module name="eureka-discovery" options="-parameters" />
       <module name="firstsc" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="nacos-config" options="-parameters" />
+      <module name="nacos-consumer" options="-parameters" />
+      <module name="nacos-provider" options="-parameters" />
       <module name="provider" options="-parameters" />
       <module name="zuul" options="-parameters" />
     </option>

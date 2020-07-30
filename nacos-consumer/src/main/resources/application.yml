@@ -1,0 +1,10 @@
+server:
+  port: 16001
+spring:
+  application:
+    name: nacos-consumer
+  cloud:
+    nacos:
+      discovery:
+        # nacosµÿ÷∑
+        server-addr: 127.0.0.1:8848

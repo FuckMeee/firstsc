@@ -1,0 +1,10 @@
+server:
+  port: 17001
+spring:
+  application:
+    name: nacos-provider
+  cloud:
+    nacos:
+      discovery:
+        # nacosµÿ÷∑
+        server-addr: 127.0.0.1:8848
