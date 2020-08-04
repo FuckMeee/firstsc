@@ -4,15 +4,15 @@ spring:
   application:
     name: nacos-config
   profiles:
-    active: test # nacos-project-a-test.yml 中的test
+    active: dev # nacos-project-a-test.yml 中的test
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.222.10:8848
       config:
-        server-addr: 127.0.0.1:8848 # 配置中心地址
+        server-addr: 192.168.222.10:8848 # 配置中心地址
         file-extension: yml # 配置文件后辍
 #        prefix: ${spring.application.name} # 配置文件名称
-        prefix: nacos-project-b # 配置文件名称
-        namespace: test # 命名空间ID
-        group: project-b
+#        prefix: nacos-project-b # 配置文件名称
+#        namespace: test # 命名空间ID
+#        group: project-b
