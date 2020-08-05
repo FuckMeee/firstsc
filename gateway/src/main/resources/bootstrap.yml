@@ -1,8 +1,4 @@
-server:
-  port: 18001
 spring:
-  application:
-    name: nacos-config
   profiles:
     active: test # nacos-project-a-test.yml 中的test
   cloud:
@@ -12,7 +8,10 @@ spring:
       config:
         server-addr: 127.0.0.1:8848 # 配置中心地址
         file-extension: yml # 配置文件后辍
-        prefix: ${spring.application.name} # 配置文件名称
-#        prefix: nacos-project-b # 配置文件名称
+        prefix: gateway # 配置文件名称
+        extension-configs[0]: # 多配置文件
+          data‐id: gateway-test-01.yml
+          group: DEFAULT_GROUP
+          refresh: true
 #        namespace: test # 命名空间ID
 #        group: project-b

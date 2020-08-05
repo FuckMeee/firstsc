@@ -6,12 +6,10 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.apache.commons.collections4.CollectionUtils;
 
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -27,17 +25,22 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Component
+@RefreshScope
 public class TokenFilter implements GlobalFilter, Ordered {
     /**
      * 不进行token校验的请求地址
      */
 //    @Value("#{'${jwt.ignoreUrlList}'.split(',')}")
-    @Value("${jwt.test}")
+    @Value("${jwt.ignore-path}")
     public List<String> ignoreUrl;
+
+    @Value("${nacos.zwh}")
+    public String config01;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         System.out.println("--------------- TokenFilter");
+        System.out.println("---------------" + config01);
         ignoreUrl.forEach(str -> System.out.println(str));
         ServerHttpRequest serverHttpRequest = exchange.getRequest();
         // 获取地址路径
@@ -50,6 +53,7 @@ public class TokenFilter implements GlobalFilter, Ordered {
             //type用于区分不同的端，在做校验token时需要
             String type= serverHttpRequest.getHeaders().getFirst("type");
 
+
             if (StringUtils.isBlank(token) || StringUtils.isBlank(type)) {
                 // 没有数据
                 return response(exchange, "1001", "请重新授权1");
@@ -57,9 +61,6 @@ public class TokenFilter implements GlobalFilter, Ordered {
                 //校验token
                 String userId = verifyJWT(token);
                 if (StringUtils.isEmpty(userId)) {
-
-
-
                     return response(exchange, "1001", "请重新授权2");
                 }
                 //将现在的request，添加当前身份

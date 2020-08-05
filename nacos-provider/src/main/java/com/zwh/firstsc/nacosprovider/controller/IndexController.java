@@ -10,10 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/nacos")
+// @RequestMapping("/nacos")
 public class IndexController {
-    @GetMapping("provider")
+    @GetMapping("/nacos/provider")
     public String nacos01() {
         return "nacos provider";
+    }
+
+    @GetMapping("/hello/login")
+    public String nacos02() {
+        return "/hello/login";
     }
 }

@@ -4,14 +4,29 @@ server:
 spring:
   application:
     name: gateway
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
   cloud:
     gateway:
       routes:
         - id: hello
-          uri: lb://provider
+          uri: lb://nacos-provider
           predicates:
-            - Path=/hello/**
+            # 各种 Predicates 同时存在于同一个路由时，请求必须同时满足所有的条件才被这个路由匹配。
+            # 一个请求满足多个路由的断言条件时，请求只会被首个成功匹配的路由转发
+#            - After=2027-01-20T17:42:47.789-07:00[America/Denver]
+#            - Query=smile # 请求带有 smile 参数即会匹配路由，不带 smile 参数则不会匹配
+#            - Query=keep, pu. # 请求中包含 keep 属性并且参数值是以 pu 开头的长度为三位的字符串才会进行匹配和路由
+#            - Header=X-Request-Id, \d+ # 一个 header 中属性名称和一个正则表达式，这个属性值和正则表达式匹配则执行
+#            - Cookie=sessionId, test # Cookie Route Predicate 可以接收两个参数，一个是 Cookie name ,一个是正则表达式，路由规则会通过获取对应的 Cookie name 值和正则表达式去匹配，如果匹配上就会执行路由，如果没有匹配上则不执行
+#            - Host=**.baidu.com # Host Route Predicate 接收一组参数，一组匹配的域名列表，这个模板是一个 ant 分隔的模板，用.号作为分隔符。它通过参数中的主机地址作为匹配规则
+#            - Method=GET # 可以通过是 POST、GET、PUT、DELETE 等不同的请求方式来进行路由
+#            - RemoteAddr=192.168.1.1/24 # Predicate 也支持通过设置某个 ip 区间号段的请求才会路由，RemoteAddr Route Predicate 接受 cidr 符号(IPv4 或 IPv6 )字符串的列表(最小大小为1)，例如 192.168.0.1/16 (其中 192.168.0.1 是 IP 地址，16 是子网掩码)
+            - Path=/hello/** # Path Route Predicate 接收一个匹配路径的参数来判断是否走路由
           filters:
+#            - StripPrefix=1 # 过滤器StripPrefix，作用是去掉请求路径的最前面n个部分截取掉。StripPrefix=1就代表截取路径的个数为1，比如前端过来请求/test/good/1/view，匹配成功后，路由到后端的请求路径就会变成http://localhost:8888/good/1/view。
             - name: Retry # 重试
               args:
                 retries: 3 # retries：重试次数，默认值是 3 次
@@ -20,8 +35,13 @@ spring:
                 series: SERVER_ERROR # 一些列的状态码配置，取值参考：org.springframework.http.HttpStatus.Series。符合的某段状态码才会进行重试逻辑，默认值是 SERVER_ERROR，值是 5，也就是 5XX(5 开头的状态码)，共有5 个值
             - name: Hystrix # 熔断
               args:
-                name: fallbackcmd
-                fallbackUri: forward:/defaultFallback # 服务降级地址
+                name: fallbackcmd #服务降级名称，自定义
+                fallbackUri: forward:/defaultFallback # 服务降级地址, 自定义controller
+#            - name: RequestRateLimiter
+#              args:
+#                key-resolver: '#{@hostAddrKeyResolver}' # 用于限流的键的解析器的 Bean 对象的名字。它使用 SpEL 表达式根据#{@beanName}从 Spring 容器中获取 Bean 对象
+#                redis-rate-limiter.replenishRate: ${limiter.replenishRate} # 令牌桶每秒填充平均速率
+#                redis-rate-limiter.burstCapacity: ${limiter.burstCapacity} # 令牌桶总容量。
         - id: auth
           uri: lb://auth
           predicates:
@@ -38,21 +58,26 @@ spring:
 #          enabled: true
 #          lower-case-service-id: true
 
-hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 2000
+# hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 2000
+# 断路器超时时间
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:7001/eureka/
+#eureka:profiles
 
 logging:
   level:
     org.springframework.cloud.gateway: debug
 
-jwt:
-  test: hello/login, hello/login2, /auth/token
-  token:
-    expireTime: 1800 # 秒
-  ignoreUrlList:
-    - "hello/login"
-    - "hello/login2"
+#jwt:
+#  test: hello/login, hello/login2, /auth/token
+#  token:
+#    expireTime: 1800 # 秒
+#  ignoreUrlList:
+#    - "hello/login"
+#    - "hello/login2"

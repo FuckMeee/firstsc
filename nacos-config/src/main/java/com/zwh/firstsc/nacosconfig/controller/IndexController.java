@@ -21,4 +21,9 @@ public class IndexController {
     public String config() {
         return config;
     }
+
+    @GetMapping("config2")
+    public String config2() {
+        return "config2";
+    }
 }
