@@ -18,7 +18,8 @@ public class IndexController {
     }
 
     @GetMapping("/hello/login")
-    public String nacos02() {
+    public String nacos02() throws InterruptedException {
+        // Thread.sleep(5000);
         return "/hello/login";
     }
 }
